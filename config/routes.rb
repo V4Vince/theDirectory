@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :ratings, except: [:new, :edit]
   resources :posts, except: [:new, :edit]
+  get '/directories' => 'posts#showAll'
   resources :profiles, except: [:new, :edit]
   resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
