@@ -54,11 +54,11 @@ class ProfilesController < ProtectedController
     end
 
     def profile_params
-      params.require(:profiles).permit(:firstName, :lastName, :username, :user_id)
+      params.require(:profiles).permit(:first_name, :last_name, :username, :user_id)
     end
 
     def profile_update_params
-      params.require(:profiles).permit(:firstName, :lastName)
+      params.require(:profiles).permit(:first_name, :last_name)
     end
 
 end

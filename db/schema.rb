@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719154431) do
+ActiveRecord::Schema.define(version: 20160719212111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20160719154431) do
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.text     "firstName"
-    t.text     "lastName"
+    t.text     "first_name"
+    t.text     "last_name"
     t.text     "username",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
