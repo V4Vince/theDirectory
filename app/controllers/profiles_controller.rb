@@ -6,7 +6,7 @@ class ProfilesController < ProtectedController
   def index
     @profile = current_user.profile
 
-    render json: @profiles
+    render json: @profile
   end
 
   # GET /profiles/1
@@ -32,7 +32,7 @@ class ProfilesController < ProtectedController
   def update
     @profile = Profile.find(params[:id])
 
-    if @profile.update(profile_params)
+    if @profile.update(profile_update_params)
       head :no_content
     else
       render json: @profile.errors, status: :unprocessable_entity
@@ -50,10 +50,15 @@ class ProfilesController < ProtectedController
   private
 
     def set_profile
-      @profile = current_user.profile.find(params[:id])
+      @profile = Profile.find(params[:id])
     end
 
     def profile_params
       params.require(:profiles).permit(:firstName, :lastName, :username, :user_id)
     end
+
+    def profile_update_params
+      params.require(:profiles).permit(:firstName, :lastName)
+    end
+
 end
