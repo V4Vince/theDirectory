@@ -1,10 +1,10 @@
-class RatingsController < ApplicationController
+class RatingsController < ProtectedController
   before_action :set_rating, only: [:show, :update, :destroy]
 
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = Rating.all
+    @ratings = current_user.ratings.all
 
     render json: @ratings
   end
@@ -18,7 +18,7 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
+    @rating = Rating.create(rating_params)
 
     if @rating.save
       render json: @rating, status: :created, location: @rating
@@ -54,6 +54,6 @@ class RatingsController < ApplicationController
     end
 
     def rating_params
-      params[:rating]
+      params.require(:ratings).permit(:stars, :post_id)
     end
 end
