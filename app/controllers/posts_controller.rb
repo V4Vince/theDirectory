@@ -8,12 +8,6 @@ class PostsController < ProtectedController
 
     render json: @posts
   end
-  #GET /directories
-  def showAll
-    @posts = Post.all
-
-    render json: @posts
-  end
 
   # GET /posts/1
   # GET /posts/1.json
