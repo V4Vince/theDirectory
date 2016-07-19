@@ -12,7 +12,7 @@ class ProfilesController < ProtectedController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    render json: @profile
+    render json: Profile.find(params[:id])
   end
 
   # POST /profiles

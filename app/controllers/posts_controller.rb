@@ -1,9 +1,15 @@
-class PostsController < ApplicationController
+class PostsController < ProtectedController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
+    @posts = current_user.posts.all
+
+    render json: @posts
+  end
+  #GET /directories
+  def showAll
     @posts = Post.all
 
     render json: @posts
@@ -18,7 +24,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     if @post.save
       render json: @post, status: :created, location: @post
@@ -50,10 +56,10 @@ class PostsController < ApplicationController
   private
 
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_user.posts.find(params[:id])
     end
 
     def post_params
-      params[:post]
+      params.require(:posts).permit(:site, :category, :description, :profile_id)
     end
 end
