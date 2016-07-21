@@ -1,11 +1,18 @@
-class PostsController < ProtectedController
+# class PostsController < ProtectedController
+class PostsController < OpenReadController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts.all
+    @posts = Post.all
 
+    render json: @posts
+  end
+
+  def userPosts
+    @posts = current_user.posts.all
+  
     render json: @posts
   end
 

@@ -9,7 +9,7 @@ curl --include --request PATCH http://localhost:3000/profiles/$ID \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "profiles": {
-      "firstName": "BobBob",
-      "lastName": "Billy"
+      "firstName": "Bob",
+      "lastName": "Bobby"
     }
   }'
