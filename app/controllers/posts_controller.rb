@@ -12,7 +12,7 @@ class PostsController < OpenReadController
 
   def userPosts
     @posts = current_user.posts.all
-  
+
     render json: @posts
   end
 
